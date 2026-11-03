@@ -82,19 +82,60 @@
   border-color: #cbd5e1 !important;
 }
 
-/* Text Overrides in Clean Mode */
-[data-theme="clean"] h1,
-[data-theme="clean"] h2,
-[data-theme="clean"] h3,
-[data-theme="clean"] h4,
-[data-theme="clean"] h5,
-[data-theme="clean"] h6 {
+/* Text Overrides in Clean Mode (Excluding vibrant hero banners) */
+[data-theme="clean"] h1:not(.hero-banner *, .vibrant-banner *),
+[data-theme="clean"] h2:not(.hero-banner *, .vibrant-banner *),
+[data-theme="clean"] h3:not(.hero-banner *, .vibrant-banner *),
+[data-theme="clean"] h4:not(.hero-banner *, .vibrant-banner *),
+[data-theme="clean"] h5:not(.hero-banner *, .vibrant-banner *),
+[data-theme="clean"] h6:not(.hero-banner *, .vibrant-banner *) {
   color: #0f172a !important;
 }
 
-[data-theme="clean"] p.text-white,
-[data-theme="clean"] span.text-white:not(.bg-indigo-600 *, .bg-emerald-600 *, .bg-cyan-600 *, .bg-rose-600 *, button.bg-indigo-600 *, button.bg-emerald-600 *),
-[data-theme="clean"] div.text-white:not(.bg-indigo-600 *, .bg-emerald-600 *, .bg-cyan-600 *, .bg-rose-600 *, button.bg-indigo-600 *, button.bg-emerald-600 *),
+/* Vibrant Hero Banner High Contrast & Color Vibrancy Protection */
+.hero-banner,
+[data-theme="clean"] .hero-banner {
+  color: #ffffff !important;
+}
+
+[data-theme="clean"] .hero-banner h1,
+[data-theme="clean"] .hero-banner .hero-title {
+  color: #ffffff !important;
+}
+
+[data-theme="clean"] .hero-banner p,
+[data-theme="clean"] .hero-banner .hero-subtitle {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+[data-theme="clean"] .hero-banner .hero-badge {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Hero Accent Highlights - Always radiant and luminous over the vibrant gradient */
+.hero-banner .text-amber-300,
+[data-theme="clean"] .hero-banner .text-amber-300 {
+  color: #fde047 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero-banner .text-emerald-300,
+[data-theme="clean"] .hero-banner .text-emerald-300 {
+  color: #6ee7b7 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero-banner .text-cyan-200,
+[data-theme="clean"] .hero-banner .text-cyan-200 {
+  color: #a5f3fc !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="clean"] p.text-white:not(.hero-banner *),
+[data-theme="clean"] span.text-white:not(.bg-indigo-600 *, .bg-emerald-600 *, .bg-cyan-600 *, .bg-rose-600 *, button.bg-indigo-600 *, button.bg-emerald-600 *, .hero-banner *),
+[data-theme="clean"] div.text-white:not(.bg-indigo-600 *, .bg-emerald-600 *, .bg-cyan-600 *, .bg-rose-600 *, button.bg-indigo-600 *, button.bg-emerald-600 *, .hero-banner *),
 [data-theme="clean"] td.text-white {
   color: #0f172a !important;
 }
@@ -120,15 +161,15 @@
 }
 
 /* Accent Text High Contrast */
-[data-theme="clean"] .text-emerald-300 {
+[data-theme="clean"] .text-emerald-300:not(.hero-banner *) {
   color: #047857 !important;
 }
 
-[data-theme="clean"] .text-cyan-300 {
+[data-theme="clean"] .text-cyan-300:not(.hero-banner *) {
   color: #0369a1 !important;
 }
 
-[data-theme="clean"] .text-amber-300 {
+[data-theme="clean"] .text-amber-300:not(.hero-banner *) {
   color: #b45309 !important;
 }
 
