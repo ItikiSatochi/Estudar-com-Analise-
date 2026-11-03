@@ -11,7 +11,8 @@ import {
   AlertCircle,
   Sparkles,
   ChevronRight,
-  Video
+  Video,
+  Award
 } from 'lucide-react';
 import { ModuleId } from '../types';
 import { modulesList, modulesDetailData } from '../data/modulesContent';
@@ -20,6 +21,7 @@ import { DaxSimulator } from './DaxSimulator';
 import { SqlPlayground } from './SqlPlayground';
 import { PythonPlayground } from './PythonPlayground';
 import { VideoPlayerGuide } from './VideoPlayerGuide';
+import { ModuleQuizView } from './ModuleQuizView';
 import { useTheme } from '../context/ThemeContext';
 
 interface Props {
@@ -32,8 +34,19 @@ export const ModuleView: React.FC<Props> = ({ moduleId, onNavigateModule, onOpen
   const { isClean } = useTheme();
   const currentModule = modulesList.find(m => m.id === moduleId);
   const detail = modulesDetailData[moduleId];
-  const [activeTab, setActiveTab] = useState<'guide' | 'code' | 'practices' | 'videos'>('guide');
+  const [activeTab, setActiveTab] = useState<'guide' | 'code' | 'practices' | 'videos' | 'quest'>('guide');
   const [copiedCodeTitle, setCopiedCodeTitle] = useState<string | null>(null);
+
+  const currentIndex = modulesList.findIndex(m => m.id === moduleId);
+  const nextModule = modulesList[currentIndex + 1];
+
+  const handleNavigateNext = () => {
+    if (nextModule) {
+      onNavigateModule(nextModule.id);
+      setActiveTab('guide');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   if (!currentModule || !detail) {
     return (
@@ -59,9 +72,9 @@ export const ModuleView: React.FC<Props> = ({ moduleId, onNavigateModule, onOpen
       }`}>
         <div className="max-w-3xl relative z-10">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span className={isClean ? 'text-indigo-600' : 'text-indigo-400'}>Nível: {currentModule.level}</span>
-            <span className={isClean ? 'text-slate-300' : 'text-slate-600'}>·</span>
-            <span className={isClean ? 'text-slate-600' : 'text-slate-400'}>{currentModule.topicsCount} Tópicos Práticos</span>
+            <span className={isClean ? 'text-indigo-600 font-bold' : 'text-indigo-400 font-bold'}>Nível: {currentModule.level}</span>
+            <span className={isClean ? 'text-slate-400' : 'text-slate-600'}>·</span>
+            <span className={isClean ? 'text-slate-700' : 'text-slate-300'}>{currentModule.topicsCount} Tópicos Práticos</span>
           </div>
 
           <h1 className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${isClean ? 'text-slate-900' : 'text-white'}`}>
@@ -76,18 +89,18 @@ export const ModuleView: React.FC<Props> = ({ moduleId, onNavigateModule, onOpen
             {detail.summary}
           </p>
 
-          {/* Tab navigation */}
+          {/* Tab navigation with high-contrast active and inactive states */}
           <div className={`flex flex-wrap items-center gap-2 mt-6 pt-6 border-t ${
             isClean ? 'border-slate-200' : 'border-slate-800'
           }`}>
             <button
               onClick={() => setActiveTab('guide')}
-              className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg transition-all ${
                 activeTab === 'guide'
-                  ? 'bg-indigo-600 text-white shadow-sm'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 ring-2 ring-indigo-400/50'
                   : (isClean 
-                      ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200' 
-                      : 'bg-slate-800/80 hover:bg-slate-700 text-slate-400')
+                      ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300' 
+                      : 'bg-slate-800/90 hover:bg-slate-700 text-slate-200 border border-slate-700')
               }`}
             >
               <BookOpen className="w-4 h-4" />
@@ -96,12 +109,12 @@ export const ModuleView: React.FC<Props> = ({ moduleId, onNavigateModule, onOpen
 
             <button
               onClick={() => setActiveTab('code')}
-              className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg transition-all ${
                 activeTab === 'code'
-                  ? 'bg-indigo-600 text-white shadow-sm'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 ring-2 ring-indigo-400/50'
                   : (isClean 
-                      ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200' 
-                      : 'bg-slate-800/80 hover:bg-slate-700 text-slate-400')
+                      ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300' 
+                      : 'bg-slate-800/90 hover:bg-slate-700 text-slate-200 border border-slate-700')
               }`}
             >
               <Code className="w-4 h-4" />
@@ -110,12 +123,12 @@ export const ModuleView: React.FC<Props> = ({ moduleId, onNavigateModule, onOpen
 
             <button
               onClick={() => setActiveTab('practices')}
-              className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg transition-all ${
                 activeTab === 'practices'
-                  ? 'bg-indigo-600 text-white shadow-sm'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 ring-2 ring-indigo-400/50'
                   : (isClean 
-                      ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200' 
-                      : 'bg-slate-800/80 hover:bg-slate-700 text-slate-400')
+                      ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300' 
+                      : 'bg-slate-800/90 hover:bg-slate-700 text-slate-200 border border-slate-700')
               }`}
             >
               <CheckCircle2 className="w-4 h-4" />
@@ -124,22 +137,43 @@ export const ModuleView: React.FC<Props> = ({ moduleId, onNavigateModule, onOpen
 
             <button
               onClick={() => setActiveTab('videos')}
-              className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg transition-all ${
                 activeTab === 'videos'
-                  ? 'bg-rose-600 text-white shadow-sm shadow-rose-600/30'
+                  ? 'bg-rose-600 text-white shadow-md shadow-rose-600/30 ring-2 ring-rose-400/50'
                   : (isClean 
-                      ? 'bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200' 
-                      : 'bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 border border-rose-900/50')
+                      ? 'bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-300' 
+                      : 'bg-rose-950/40 hover:bg-rose-900/60 text-rose-200 border border-rose-800/50')
               }`}
             >
               <Video className="w-4 h-4" />
-              <span>Vídeo Aulas & Orientação</span>
+              <span>Vídeo Aulas (PT-BR)</span>
               <span className={`text-[10px] px-1.5 py-0.2 rounded font-bold uppercase ${
                 activeTab === 'videos' 
                   ? 'bg-white/20 text-white' 
                   : (isClean ? 'bg-rose-200 text-rose-900' : 'bg-rose-900 text-rose-200')
               }`}>
                 YouTube
+              </span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('quest')}
+              className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg transition-all ${
+                activeTab === 'quest'
+                  ? 'bg-amber-600 text-white shadow-md shadow-amber-600/30 ring-2 ring-amber-400/50'
+                  : (isClean 
+                      ? 'bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300' 
+                      : 'bg-amber-950/40 hover:bg-amber-900/60 text-amber-200 border border-amber-800/50')
+              }`}
+            >
+              <Award className="w-4 h-4" />
+              <span>Desafio de Fixação (Quest)</span>
+              <span className={`text-[10px] px-1.5 py-0.2 rounded font-bold uppercase ${
+                activeTab === 'quest' 
+                  ? 'bg-white/20 text-white' 
+                  : (isClean ? 'bg-amber-200 text-amber-900' : 'bg-amber-900 text-amber-200')
+              }`}>
+                Avaliativo
               </span>
             </button>
           </div>
@@ -351,6 +385,16 @@ export const ModuleView: React.FC<Props> = ({ moduleId, onNavigateModule, onOpen
         <VideoPlayerGuide 
           moduleId={moduleId} 
           moduleTitle={currentModule.title} 
+          onOpenQuest={() => setActiveTab('quest')}
+        />
+      )}
+
+      {/* Tab 5: Interactive Module Quest / Quiz */}
+      {activeTab === 'quest' && (
+        <ModuleQuizView 
+          moduleId={moduleId}
+          moduleTitle={currentModule.title}
+          onNavigateNextModule={nextModule ? handleNavigateNext : undefined}
         />
       )}
     </div>

@@ -125,3 +125,29 @@ export interface VideoGuide {
   keyTopics: string[];
 }
 
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctIndex: number;
+  corporateExplanation: string;
+  businessScenario?: string;
+}
+
+export interface ModuleQuest {
+  moduleId: ModuleId;
+  title: string;
+  badgeTitle: string;
+  description: string;
+  passingScorePercent: number;
+  questions: QuizQuestion[];
+}
+
+export interface QuizAttemptResult {
+  score: number;
+  total: number;
+  percentage: number;
+  passed: boolean;
+  selectedAnswers: Record<number, number>;
+}
+

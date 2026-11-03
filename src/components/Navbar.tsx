@@ -52,7 +52,9 @@ export const Navbar: React.FC<Props> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800">
+    <header className={`sticky top-0 z-40 backdrop-blur-md border-b transition-colors ${
+      isClean ? 'bg-white/95 border-slate-200 shadow-xs' : 'bg-slate-950/95 border-slate-800'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 gap-4">
           
@@ -153,18 +155,21 @@ export const Navbar: React.FC<Props> = ({
               <button
                 key={mod.id}
                 onClick={() => onSelectModule(mod.id)}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg whitespace-nowrap transition-all font-semibold ${
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg whitespace-nowrap transition-all ${
                   isActive
-                    ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-500/25 border border-indigo-600 ring-1 ring-indigo-500'
+                    ? 'bg-indigo-600 text-white font-extrabold shadow-md shadow-indigo-600/30 border border-indigo-500 ring-2 ring-indigo-400/50'
                     : (isClean
-                        ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-transparent'
-                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900 border border-transparent')
+                        ? 'text-slate-700 hover:text-indigo-600 hover:bg-slate-100 font-semibold border border-transparent'
+                        : 'text-slate-300 hover:text-white hover:bg-slate-800/80 font-medium border border-transparent')
                 }`}
               >
-                <span className={isActive ? 'text-white' : (isClean ? 'text-slate-500' : 'text-slate-500')}>
+                <span className={isActive ? 'text-white' : (isClean ? 'text-slate-500' : 'text-slate-400')}>
                   {getIcon(mod.id)}
                 </span>
-                <span className={isActive ? 'text-white font-bold' : ''}>{mod.shortTitle}</span>
+                <span>{mod.shortTitle}</span>
+                {isActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-white ml-0.5 animate-pulse" />
+                )}
               </button>
             );
           })}

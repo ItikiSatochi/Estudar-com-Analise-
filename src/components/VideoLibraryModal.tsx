@@ -69,7 +69,7 @@ export const VideoLibraryModal: React.FC<Props> = ({
                 </span>
               </div>
               <p className={`text-xs ${isClean ? 'text-slate-600' : 'text-slate-400'}`}>
-                Masterclasses gravadas, navegação por minutagem e suporte para adicionar seus próprios links do YouTube.
+                Masterclasses abertas e em português (PT-BR), com navegação por minutagem e capítulos para estudo corporativo focado.
               </p>
             </div>
           </div>

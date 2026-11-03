@@ -302,32 +302,32 @@ export const StorytellingBeforeAfter: React.FC = () => {
         isClean ? 'border-slate-200' : 'border-slate-800'
       }`}>
         <div className={`p-4 rounded-xl border ${
-          isClean ? 'bg-slate-50 border-slate-200 text-slate-700 shadow-xs' : 'bg-slate-800/40 border-slate-700/60 text-slate-300'
+          isClean ? 'bg-slate-50/90 border-slate-300 text-slate-800 shadow-xs' : 'bg-slate-900 border-slate-800 text-slate-200'
         }`}>
-          <span className={`font-bold block mb-1.5 ${isClean ? 'text-slate-900' : 'text-slate-200'}`}>
+          <span className={`font-bold block mb-1.5 text-xs sm:text-sm ${isClean ? 'text-indigo-900' : 'text-indigo-400'}`}>
             1. Regra do Data-Ink Ratio
           </span>
-          <p className={`leading-relaxed ${isClean ? 'text-slate-600' : 'text-slate-400'}`}>
+          <p className={`leading-relaxed text-xs ${isClean ? 'text-slate-700 font-medium' : 'text-slate-300'}`}>
             Se você pode apagar uma borda, sombra ou linha de grade sem perder o significado do dado, apague imediatamente.
           </p>
         </div>
         <div className={`p-4 rounded-xl border ${
-          isClean ? 'bg-slate-50 border-slate-200 text-slate-700 shadow-xs' : 'bg-slate-800/40 border-slate-700/60 text-slate-300'
+          isClean ? 'bg-slate-50/90 border-slate-300 text-slate-800 shadow-xs' : 'bg-slate-900 border-slate-800 text-slate-200'
         }`}>
-          <span className={`font-bold block mb-1.5 ${isClean ? 'text-slate-900' : 'text-slate-200'}`}>
+          <span className={`font-bold block mb-1.5 text-xs sm:text-sm ${isClean ? 'text-indigo-900' : 'text-indigo-400'}`}>
             2. Gestalt: Proximidade
           </span>
-          <p className={`leading-relaxed ${isClean ? 'text-slate-600' : 'text-slate-400'}`}>
+          <p className={`leading-relaxed text-xs ${isClean ? 'text-slate-700 font-medium' : 'text-slate-300'}`}>
             Coloque valores e descrições colados na barra correspondente, poupando a memória de curto prazo do leitor.
           </p>
         </div>
         <div className={`p-4 rounded-xl border ${
-          isClean ? 'bg-slate-50 border-slate-200 text-slate-700 shadow-xs' : 'bg-slate-800/40 border-slate-700/60 text-slate-300'
+          isClean ? 'bg-slate-50/90 border-slate-300 text-slate-800 shadow-xs' : 'bg-slate-900 border-slate-800 text-slate-200'
         }`}>
-          <span className={`font-bold block mb-1.5 ${isClean ? 'text-slate-900' : 'text-slate-200'}`}>
+          <span className={`font-bold block mb-1.5 text-xs sm:text-sm ${isClean ? 'text-indigo-900' : 'text-indigo-400'}`}>
             3. Títulos como Conclusão
           </span>
-          <p className={`leading-relaxed ${isClean ? 'text-slate-600' : 'text-slate-400'}`}>
+          <p className={`leading-relaxed text-xs ${isClean ? 'text-slate-700 font-medium' : 'text-slate-300'}`}>
             O título do gráfico deve responder: "E daí? Qual decisão este visual está me pedindo para tomar?".
           </p>
         </div>
