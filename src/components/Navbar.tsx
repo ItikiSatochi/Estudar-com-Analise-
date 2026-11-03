@@ -12,7 +12,8 @@ import {
   Compass,
   Download,
   Sun,
-  Moon
+  Moon,
+  Video
 } from 'lucide-react';
 import { ModuleId } from '../types';
 import { modulesList } from '../data/modulesContent';
@@ -23,13 +24,15 @@ interface Props {
   onSelectModule: (id: ModuleId) => void;
   onOpenAi: () => void;
   onOpenLab: () => void;
+  onOpenVideos?: () => void;
 }
 
 export const Navbar: React.FC<Props> = ({
   activeModule,
   onSelectModule,
   onOpenAi,
-  onOpenLab
+  onOpenLab,
+  onOpenVideos
 }) => {
   const { theme, toggleTheme, isClean } = useTheme();
 
@@ -113,6 +116,22 @@ export const Navbar: React.FC<Props> = ({
               <Briefcase className={`w-3.5 h-3.5 ${activeModule === 'corporate-projects' ? 'text-white' : (isClean ? 'text-indigo-600' : 'text-indigo-400')}`} />
               <span>Cases Reais</span>
             </button>
+
+            {/* Vídeo Aulas & YouTube Button */}
+            {onOpenVideos && (
+              <button
+                onClick={onOpenVideos}
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all border ${
+                  isClean
+                    ? 'bg-rose-50 hover:bg-rose-100 text-rose-800 border-rose-200 shadow-xs'
+                    : 'bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 border-rose-900/50'
+                }`}
+              >
+                <Video className="w-3.5 h-3.5 text-rose-500" />
+                <span className="hidden sm:inline">Vídeos</span>
+                <span className="sm:hidden">Vídeos</span>
+              </button>
+            )}
 
             <button
               onClick={onOpenAi}

@@ -10,7 +10,8 @@ import {
   Check, 
   AlertCircle,
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  Video
 } from 'lucide-react';
 import { ModuleId } from '../types';
 import { modulesList, modulesDetailData } from '../data/modulesContent';
@@ -18,6 +19,7 @@ import { StorytellingBeforeAfter } from './StorytellingBeforeAfter';
 import { DaxSimulator } from './DaxSimulator';
 import { SqlPlayground } from './SqlPlayground';
 import { PythonPlayground } from './PythonPlayground';
+import { VideoPlayerGuide } from './VideoPlayerGuide';
 import { useTheme } from '../context/ThemeContext';
 
 interface Props {
@@ -30,7 +32,7 @@ export const ModuleView: React.FC<Props> = ({ moduleId, onNavigateModule, onOpen
   const { isClean } = useTheme();
   const currentModule = modulesList.find(m => m.id === moduleId);
   const detail = modulesDetailData[moduleId];
-  const [activeTab, setActiveTab] = useState<'guide' | 'code' | 'practices'>('guide');
+  const [activeTab, setActiveTab] = useState<'guide' | 'code' | 'practices' | 'videos'>('guide');
   const [copiedCodeTitle, setCopiedCodeTitle] = useState<string | null>(null);
 
   if (!currentModule || !detail) {
@@ -118,6 +120,27 @@ export const ModuleView: React.FC<Props> = ({ moduleId, onNavigateModule, onOpen
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>Checklist de Governança & Práticas</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('videos')}
+              className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
+                activeTab === 'videos'
+                  ? 'bg-rose-600 text-white shadow-sm shadow-rose-600/30'
+                  : (isClean 
+                      ? 'bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200' 
+                      : 'bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 border border-rose-900/50')
+              }`}
+            >
+              <Video className="w-4 h-4" />
+              <span>Vídeo Aulas & Orientação</span>
+              <span className={`text-[10px] px-1.5 py-0.2 rounded font-bold uppercase ${
+                activeTab === 'videos' 
+                  ? 'bg-white/20 text-white' 
+                  : (isClean ? 'bg-rose-200 text-rose-900' : 'bg-rose-900 text-rose-200')
+              }`}>
+                YouTube
+              </span>
             </button>
           </div>
         </div>
@@ -321,6 +344,14 @@ export const ModuleView: React.FC<Props> = ({ moduleId, onNavigateModule, onOpen
             </div>
           ))}
         </div>
+      )}
+
+      {/* Tab 4: YouTube Video Classes & Interactive Player */}
+      {activeTab === 'videos' && (
+        <VideoPlayerGuide 
+          moduleId={moduleId} 
+          moduleTitle={currentModule.title} 
+        />
       )}
     </div>
   );

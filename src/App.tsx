@@ -12,12 +12,14 @@ import { KpiDictionaryView } from './components/KpiDictionaryView';
 import { ModuleView } from './components/ModuleView';
 import { ExportModal } from './components/ExportModal';
 import { AiInsightsModal } from './components/AiInsightsModal';
+import { VideoLibraryModal } from './components/VideoLibraryModal';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 function AppContent() {
   const [activeModule, setActiveModule] = useState<ModuleId>('overview');
   const [isExportModalOpen, setIsExportModalOpen] = useState<boolean>(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState<boolean>(false);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState<boolean>(false);
   const { theme, isClean } = useTheme();
   const [exportContext, setExportContext] = useState<{
     title: string;
@@ -47,6 +49,7 @@ function AppContent() {
         onSelectModule={setActiveModule}
         onOpenAi={() => setIsAiModalOpen(true)}
         onOpenLab={() => setActiveModule('corporate-projects')}
+        onOpenVideos={() => setIsVideoModalOpen(true)}
       />
 
       {/* Main Container */}
@@ -96,6 +99,12 @@ function AppContent() {
           data: null,
           summary: null,
         }}
+      />
+
+      <VideoLibraryModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        defaultModule={activeModule}
       />
 
       {/* Footer */}

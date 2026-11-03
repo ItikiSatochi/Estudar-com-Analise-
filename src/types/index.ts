@@ -112,3 +112,16 @@ export interface KPIMetric {
   exemploSql?: string;
   exemploPython?: string;
 }
+
+export interface VideoGuide {
+  id: string;
+  youtubeId: string;
+  title: string;
+  channel: string;
+  duration: string;
+  level: 'Iniciante' | 'Intermediário' | 'Avançado' | 'Executivo';
+  description: string;
+  timestamps: { time: string; seconds: number; label: string }[];
+  keyTopics: string[];
+}
+

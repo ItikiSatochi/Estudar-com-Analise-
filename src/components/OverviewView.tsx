@@ -14,7 +14,9 @@ import {
   Sparkles,
   Layers,
   Cpu,
-  FileSpreadsheet
+  FileSpreadsheet,
+  Video,
+  Play
 } from 'lucide-react';
 import { ModuleId } from '../types';
 import { modulesList } from '../data/modulesContent';
@@ -47,7 +49,7 @@ export const OverviewView: React.FC<Props> = ({ onSelectModule, onOpenLab, onOpe
         <div className="max-w-3xl relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Guia Corporativo Definitivo de Inteligência Analítica</span>
+            <span>Guia Corporativo Definitivo de Inteligência Analítica & Vídeos YouTube</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
@@ -55,7 +57,7 @@ export const OverviewView: React.FC<Props> = ({ onSelectModule, onOpenLab, onOpe
           </h1>
 
           <p className="text-sm sm:text-base text-slate-300 mt-4 leading-relaxed font-normal">
-            Aprenda as metodologias, modelos dimensionais e técnicas de visualização executiva aplicadas em corporações de alta performance. Pratique com datasets reais de Varejo, SaaS B2B, Finanças e Supply Chain.
+            Aprenda as metodologias, modelos dimensionais e técnicas de visualização executiva aplicadas em corporações de alta performance. Assista a vídeo aulas do YouTube integradas e pratique com datasets reais.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 mt-8">
@@ -66,6 +68,14 @@ export const OverviewView: React.FC<Props> = ({ onSelectModule, onOpenLab, onOpe
               <Briefcase className="w-4 h-4" />
               <span>Explorar Laboratório de Cases Reais</span>
               <ArrowRight className="w-4 h-4" />
+            </button>
+
+            <button
+              onClick={() => onSelectModule('storytelling')}
+              className="flex items-center gap-2 bg-rose-600 hover:bg-rose-500 text-white text-xs sm:text-sm font-semibold px-4 py-3 rounded-xl transition-all shadow-md shadow-rose-600/20 active:scale-95"
+            >
+              <Video className="w-4 h-4" />
+              <span>Vídeo Aulas YouTube</span>
             </button>
 
             <button
@@ -88,7 +98,7 @@ export const OverviewView: React.FC<Props> = ({ onSelectModule, onOpenLab, onOpe
       </div>
 
       {/* Corporate Capabilities Summary */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl">
           <span className="text-xs text-slate-400 block mb-1">Cases Corporativos Reais</span>
           <div className="text-2xl font-bold font-mono text-white">4 Verticais</div>
@@ -96,9 +106,15 @@ export const OverviewView: React.FC<Props> = ({ onSelectModule, onOpenLab, onOpe
         </div>
 
         <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+          <span className="text-xs text-slate-400 block mb-1">Vídeo Aulas & Mentoria</span>
+          <div className="text-2xl font-bold font-mono text-rose-400">YouTube HD</div>
+          <span className="text-[11px] text-rose-300 mt-1 block">Capítulos & Player Integrado</span>
+        </div>
+
+        <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl">
           <span className="text-xs text-slate-400 block mb-1">Simuladores Interativos</span>
           <div className="text-2xl font-bold font-mono text-emerald-400">4 Motores</div>
-          <span className="text-[11px] text-slate-400 mt-1 block">DAX, SQL EXPLAIN, Python & Gestalt</span>
+          <span className="text-[11px] text-slate-400 mt-1 block">DAX, SQL, Python & Gestalt</span>
         </div>
 
         <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl">
@@ -119,7 +135,7 @@ export const OverviewView: React.FC<Props> = ({ onSelectModule, onOpenLab, onOpe
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-xl font-bold text-white">Trilha de Formação em Inteligência de Dados</h2>
-            <p className="text-xs text-slate-400 mt-0.5">Selecione qualquer módulo para mergulhar em fundamentos, práticas e código</p>
+            <p className="text-xs text-slate-400 mt-0.5">Selecione qualquer módulo para mergulhar em fundamentos, práticas, código e vídeos YouTube</p>
           </div>
         </div>
 
@@ -150,7 +166,10 @@ export const OverviewView: React.FC<Props> = ({ onSelectModule, onOpenLab, onOpe
               </div>
 
               <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-indigo-400 font-medium">
-                <span>Acessar Módulo</span>
+                <span className="flex items-center gap-1.5 text-rose-400 font-semibold">
+                  <Video className="w-3.5 h-3.5" />
+                  <span>Vídeo Aula Disponível</span>
+                </span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
@@ -160,3 +179,4 @@ export const OverviewView: React.FC<Props> = ({ onSelectModule, onOpenLab, onOpe
     </div>
   );
 };
+
